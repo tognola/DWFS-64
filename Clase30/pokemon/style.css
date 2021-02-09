@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#pokemonContainer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.card{
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    text-align: center;
+}
+
+.card h2 {
+    font-size: medium;
+}
+
+.card img{
+    padding-top: 1em;
+}
