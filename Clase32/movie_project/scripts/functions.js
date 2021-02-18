@@ -4,7 +4,7 @@ const api = "http://www.omdbapi.com/?&apikey=237f8774"
 function searchMovies(text){
     fetch(`${api}&s=${text}`)
     .then( res => res.json() )
-    .then(data => {
+    .then( data => {
         movies = data.Search;
 
         movies.forEach(
