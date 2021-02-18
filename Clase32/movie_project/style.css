@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-form{
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.search-form form input {
+    width: 50vw;
+}
+
+.grid-results {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 300px;
+    box-shadow: 2px 2px 6px 0px black;
+    margin: 1em auto;
+}
