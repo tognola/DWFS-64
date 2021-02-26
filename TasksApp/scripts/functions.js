@@ -1,6 +1,6 @@
 function drawTasks(){ // HOISTING
     taskList.innerHTML = '';
-    tasks.forEach(
+    taskManager.tasks.forEach(
         task => {
             let item = document.createElement("li");
             let text = document.createTextNode(task.id+ ". " +task.text)
@@ -25,39 +25,39 @@ function drawTasks(){ // HOISTING
 }
 
 function deleteTask(id){
-    tasks = tasks.filter(
-        task => {
-            return task.id != id;
-        }
-    )
+    taskManager.removeTask(id);
     drawTasks();
 }
 
 function addTask(){
-    let newTask = inputTask.value;
-    if(newTask != ""){
-        tasks.push({
-            id: tasks[tasks.length-1].id + 1,
-            text: newTask
-        })
-        drawTasks();
-
-        inputTask.value = "";
-        btnNewTask.disabled = true;
-    
+    if(taskManager.isEditing){
+        taskManager.taskToEdit.text = inputTask.value;
+        taskManager.editTask(taskManager.taskToEdit)
+        btnNewTask.textContent = "Agregar";
+        taskManager.isEditing = false;
+    } else {
+        if(inputTask.value != ""){
+            let newTask = new Task(inputTask.value);
+            
+            taskManager.addTask(newTask)           
+        }
     }
-    console.log(tasks)
+
+    drawTasks();
+    inputTask.value = "";
+    btnNewTask.disabled = true;
+   
+    console.log(taskManager.tasks)
 }
 
 function editTask(id){
-    let index = tasks.findIndex(
+    let index = taskManager.tasks.findIndex(
         task => task.id == id
-    )
-
-    console.log()
-    
-
-    inputTask.value = tasks[index].text;
-    
+    ) 
+    inputTask.value = taskManager.tasks[index].text;
+    btnNewTask.textContent = "Guardar cambios";
+    btnNewTask.disabled = false;
+    taskManager.isEditing = true;
+    taskManager.taskToEdit = taskManager.tasks[index];
 }
 
